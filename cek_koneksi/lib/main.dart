@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,35 +10,47 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'angga afriliansyah'),
+      title: "Cek Koneksi",
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomeState extends State<Home> {
+  late bool isConnected;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
 
-  void _incrementCounter() {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isConnected = true;
+    _initConnectivityStatus().then((_) {
+      _connectivitySubscription =
+          _connectivity.onConnectivityChanged.listen((result) {
+        setState(() {
+          isConnected = !result.contains(ConnectivityResult.none);
+        });
+      });
+    });
+  }
+
+  Future<void> _initConnectivityStatus() async {
+    final result = await _connectivity.checkConnectivity();
     setState(() {
-      _counter++;
+      isConnected = !result.contains(ConnectivityResult.none);
     });
   }
 
@@ -43,27 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text("Aplikasi Cek Koneksi Internet"),
+        backgroundColor: Colors.green,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          child: Image.asset(
+            isConnected ? 'images/connected.png' : 'images/disconnected.png',
+            key: ValueKey<bool>(isConnected),
+            width: 200,
+            height: 200,
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
