@@ -8,7 +8,7 @@ class WidgetDemo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Widget Demo'),
+        title: const Text('Widget Demo'),
       ),
       body: Column(
         children: [
@@ -19,7 +19,7 @@ class WidgetDemo extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             color: Colors.blue,
             child: const Center(
-              child: const Text(
+              child: Text(
                 "Angga Afriliansyah",
                 style: TextStyle(
                   fontSize: 20,
