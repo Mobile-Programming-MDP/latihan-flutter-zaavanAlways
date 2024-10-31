@@ -16,13 +16,11 @@ class LatihanScreen extends StatelessWidget {
           children: [
             const Center(
               child: Text(
-                'KUROSAKI ICHIG',
+                'UNIVERSITAS MDP',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Image.asset(
               "images/gambarAku.png",
               height: 250,
@@ -39,7 +37,7 @@ class LatihanScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
-            //Area Container Merah (informasi detail)
+            // Area Container Merah (informasi detail)
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -49,11 +47,11 @@ class LatihanScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    //ToDo : Baris, berisi info
+                    // Baris 1: Informasi Status dan Akreditasi
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //kiri -- status dan akre
+                        // Kiri -- Status dan Akreditasi
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,9 +71,7 @@ class LatihanScreen extends StatelessWidget {
                                   fontSize: 15,
                                 ),
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
+                              SizedBox(height: 8),
                               Text(
                                 'Akreditasi',
                                 style: TextStyle(
@@ -90,11 +86,11 @@ class LatihanScreen extends StatelessWidget {
                                   color: Colors.purple,
                                   fontSize: 15,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
-                        //kanan -- tgl berdiri dan jumlh mhs
+                        // Kanan -- Tanggal Berdiri dan Jumlah Mahasiswa
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,9 +110,7 @@ class LatihanScreen extends StatelessWidget {
                                   fontSize: 15,
                                 ),
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
+                              SizedBox(height: 8),
                               Text(
                                 'Jumlah Mahasiswa',
                                 style: TextStyle(
@@ -131,24 +125,105 @@ class LatihanScreen extends StatelessWidget {
                                   color: Colors.purple,
                                   fontSize: 15,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
+                    SizedBox(height: 10),
+                    // Baris 2: Kontak
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.call, color: Colors.purple),
+                            SizedBox(width: 3),
+                            Text(
+                              '08124551234',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.purple,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 10),
+                        Row(
+                          children: [
+                            Icon(Icons.web, color: Colors.purple),
+                            SizedBox(width: 3),
+                            Text(
+                              'mdp.ac.id',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.purple,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 3),
+                        Row(
+                          children: [
+                            Icon(Icons.email, color: Colors.purple),
+                            Text(
+                              'mhs@mdp',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.purple,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    // ToDo : Baris 2 berisi kontak
-                    //icon : icon telp + text
-                    // icon : icon website + text
-                    // icon : icon email + text
                   ],
-                  //tambah alamat (pake kolom)
-                  //dalam alamat di dalem kolom
-                  //dalam alamat di kolom ada bacaan learn more (learn more pake kolom sendiri)
                 ),
+              ),
+            ),
+            // Alamat di bawah kontainer informasi
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.pink[200],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Alamat',
+                    style: TextStyle(
+                      color: Colors.purple,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const Text(
+                    'Jl. Jenderal Sudirman No. 123, Palembang',
+                    style: TextStyle(
+                      color: Colors.purple,
+                      fontSize: 15,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        // Aksi untuk tombol Learn More
+                      },
+                      child: const Text(
+                        'Learn More',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
