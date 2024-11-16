@@ -26,7 +26,7 @@ class ItemCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        margin: EdgeInsets.all(4),
+        margin: const EdgeInsets.all(4),
         elevation: 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
