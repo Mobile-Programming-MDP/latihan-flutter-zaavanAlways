@@ -10,8 +10,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   // TODO: 1. Deklarasikan variabel yang dibutuhkan
-  final List<Candi> _filteredCandis = [];
-  final String _searchQuery = '';
+  List<Candi> _filteredCandis = [];
+  String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
 
   @override
